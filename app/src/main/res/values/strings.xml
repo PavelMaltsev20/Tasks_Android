@@ -20,4 +20,7 @@
     <string name="confirm">Confirm</string>
     <string name="error_occurred_please_check_internet_connection">Error occurred, please check internet connection</string>
     <string name="choose_sign_up_method">Choose sign up method</string>
+    <string name="short_password_please_choose_long_pass_min_6_symbols">Short password, please choose long pass (min. 6 symbols)</string>
+    <string name="please_fill_all_fields">Please fill all fields</string>
+    <string name="please_enter_same_password">"Please enter same password "</string>
 </resources>

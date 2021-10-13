@@ -1,9 +1,12 @@
-package com.pavelmaltsev.tasks.auth
+package com.pavelmaltsev.tasks.ui.auth
 
 import android.app.Activity
 import android.content.Intent
+import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
@@ -11,6 +14,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.Group
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.facebook.*
 import com.facebook.FacebookSdk.sdkInitialize
 import com.facebook.login.LoginManager
@@ -44,20 +49,11 @@ open class AuthFragment : Fragment() {
 
         return object : FacebookCallback<LoginResult> {
             override fun onCancel() {
-                Toast.makeText(
-                    requireContext(),
-                    getString(R.string.action_canceled_please_check_facebook_login_and_password),
-                    Toast.LENGTH_LONG
-                ).show()
+                showErrorToast()
             }
 
             override fun onError(error: FacebookException) {
-                Toast.makeText(
-                    requireContext(),
-                    getString(R.string.action_failed_please_check_internet_connection),
-                    Toast.LENGTH_LONG
-                ).show()
-
+                showErrorToast()
             }
 
             override fun onSuccess(result: LoginResult) {
@@ -86,6 +82,7 @@ open class AuthFragment : Fragment() {
                     // we can extract it from - facebookUser
                     val facebookUser = auth.currentUser!!
                     showWelcomeToast()
+                    openTasksFragment()
                 } else {
                     Log.e(TAG, "signInWithCredential error: ${task.exception}")
                 }
@@ -134,6 +131,7 @@ open class AuthFragment : Fragment() {
                     //this is same like with facebook
                     val googleUser = auth.currentUser!!
                     showWelcomeToast()
+                    openTasksFragment()
                 } else {
                     showErrorToast()
                 }
@@ -151,6 +149,7 @@ open class AuthFragment : Fragment() {
                     }
                     if (task.isSuccessful) {
                         showWelcomeToast()
+                        openTasksFragment()
                     }
                 } else {
                     showErrorToast()
@@ -167,6 +166,7 @@ open class AuthFragment : Fragment() {
                     }
                     if (task.isSuccessful) {
                         showWelcomeToast()
+                        openTasksFragment()
                     }
                 } else {
                     showErrorToast()
@@ -175,7 +175,7 @@ open class AuthFragment : Fragment() {
     }
     //endregion
 
-    private fun showWelcomeToast() {
+    fun showWelcomeToast() {
         Toast.makeText(
             requireContext(),
             getString(R.string.welcome_to_tasks_app),
@@ -189,6 +189,11 @@ open class AuthFragment : Fragment() {
             getString(R.string.error_occurred_please_check_internet_connection),
             Toast.LENGTH_SHORT
         ).show()
+    }
+
+    fun openTasksFragment() {
+        Navigation.findNavController(requireActivity().findViewById(R.id.nav_host_fragment))
+            .navigate(R.id.action_global_tasksFragment)
     }
 
     fun Group.startFade() =

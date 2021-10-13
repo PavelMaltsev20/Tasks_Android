@@ -1,11 +1,11 @@
-package com.pavelmaltsev.tasks.auth
+package com.pavelmaltsev.tasks.ui.auth
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.pavelmaltsev.tasks.R
 import com.pavelmaltsev.tasks.databinding.FragmentRegisterBinding
 
 
@@ -74,25 +74,28 @@ class RegisterFragment : AuthFragment() {
 
 
         if (email.isEmpty() || pass.isEmpty() || pass2.isEmpty()) {
-            Toast.makeText(requireContext(), "Please fill all fields", Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(), R.string.please_fill_all_fields, Toast.LENGTH_LONG)
+                .show()
             return
         }
 
         if (pass.length < 6 || pass2.length < 6) {
             Toast.makeText(
                 requireContext(),
-                "Short password, please choose long pass (min. 6 symbols)",
+                R.string.short_password_please_choose_long_pass_min_6_symbols,
                 Toast.LENGTH_LONG
             ).show()
             return
         }
 
         if (pass != pass2) {
-            Toast.makeText(requireContext(), "Please enter same password", Toast.LENGTH_LONG).show()
+            Toast.makeText(
+                requireContext(), R.string.please_enter_same_password, Toast.LENGTH_LONG
+            ).show()
             return
         }
 
-        signUpWithEmail(email, pass)
+        super.signUpWithEmail(email, pass)
 
         displayEmailInput()
     }

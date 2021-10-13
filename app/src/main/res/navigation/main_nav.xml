@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.pavelmaltsev.tasks.auth.LoginFragment"
+        android:name="com.pavelmaltsev.tasks.ui.auth.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -20,7 +20,19 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.pavelmaltsev.tasks.auth.RegisterFragment"
+        android:name="com.pavelmaltsev.tasks.ui.auth.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" />
+    <fragment
+        android:id="@+id/tasksFragment"
+        android:name="com.pavelmaltsev.tasks.ui.tasks.TasksFragment"
+        android:label="fragment_tasks"
+        tools:layout="@layout/fragment_tasks" />
+    <action
+        android:id="@+id/action_global_tasksFragment"
+        app:destination="@id/tasksFragment"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@anim/nav_default_pop_exit_anim" />
 </navigation>

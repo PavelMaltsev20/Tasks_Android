@@ -1,15 +1,12 @@
-package com.pavelmaltsev.tasks.auth
+package com.pavelmaltsev.tasks.ui.auth
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
-import androidx.constraintlayout.widget.Group
-import androidx.fragment.app.Fragment
+import android.widget.Toast
 import androidx.navigation.Navigation
-import com.facebook.FacebookSdk.getApplicationContext
+import com.google.firebase.auth.FirebaseAuth
 import com.pavelmaltsev.tasks.R
 import com.pavelmaltsev.tasks.databinding.FragmentLoginBinding
 
@@ -18,12 +15,20 @@ class LoginFragment : AuthFragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        //Check if let user sign in
+        val user = FirebaseAuth.getInstance().currentUser
+        if(user != null){
+            showWelcomeToast()
+            openTasksFragment()
+        }
+
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
+
+
         return binding.root
     }
 
@@ -36,7 +41,6 @@ class LoginFragment : AuthFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.signInBtnGroup.startFade()
-
         initListeners()
     }
 
@@ -44,10 +48,15 @@ class LoginFragment : AuthFragment() {
         binding.signInEmail.setOnClickListener {
             displayEmailInput()
         }
+        binding.includeAuth.layoutAuthBtn.setOnClickListener {
+            checkUserInput()
+        }
         binding.signInGoogle.setOnClickListener {
+            super.authWithGoogle()
         }
         binding.signInFacebook.setReadPermissions("email", "public_profile")
         binding.signInFacebook.setOnClickListener {
+            binding.signInFacebook.registerCallback(super.callbackManager, super.authWithFacebook())
         }
 
         binding.signInTitle.setOnClickListener {
@@ -56,6 +65,30 @@ class LoginFragment : AuthFragment() {
         binding.signInNewAccount.setOnClickListener {
             openRegisterFragment()
         }
+    }
+
+    private fun checkUserInput() {
+        val email = binding.includeAuth.layoutAuthEmail.text.toString()
+        val pass = binding.includeAuth.layoutAuthPass.text.toString()
+
+        if (email.isEmpty() || pass.isEmpty()) {
+            Toast.makeText(requireContext(), R.string.please_fill_all_fields, Toast.LENGTH_LONG)
+                .show()
+            return
+        }
+
+        if (pass.length < 6) {
+            Toast.makeText(
+                requireContext(),
+                R.string.short_password_please_choose_long_pass_min_6_symbols,
+                Toast.LENGTH_LONG
+            ).show()
+            return
+        }
+
+        super.signInWithEmail(email, pass)
+
+        displayEmailInput()
     }
 
     private fun openRegisterFragment() {
