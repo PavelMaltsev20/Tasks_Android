@@ -5,11 +5,16 @@
     <string name="action_failed_please_check_internet_connection">Action failed, please check internet connection</string>
     <string name="action_canceled_please_check_facebook_login_and_password">Action canceled, please check facebook login and password</string>
     <string name="welcome_to_tasks_app">Welcome to Tasks app</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="login_with_google">Login with google</string>
-    <string name="sign_in_with_email">Sign in with @ Email</string>
+    <string name="login_with_google">Sign in with Google</string>
+    <string name="sign_in_with_email">Sign in with Email</string>
     <string name="welcome_to_tasks">Welcome to Tasks</string>
-
-
+    <string name="enter_email">Enter email</string>
+    <string name="enter_password">Enter password</string>
+    <string name="sign_up_to_tasks">Sign up to Tasks</string>
+    <string name="create_new_account">create new account</string>
+    <string name="sign_up_with_google">Sign up with Google</string>
+    <string name="sign_up_with_email">Sign up with Email</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="error_while_creating_account_with_google">Error while creating account with Google</string>
 </resources>

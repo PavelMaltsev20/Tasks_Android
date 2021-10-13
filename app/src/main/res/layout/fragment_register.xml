@@ -1,14 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".auth.RegisterFragment">
+    android:background="@drawable/img_login"
+    android:fillViewport="true"
+    tools:context=".auth.LoginFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/signUp_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/amatica_sc"
+            android:text="@string/sign_up_to_tasks"
+            android:textColor="@color/email_login"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/signIn_btnGroup"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:constraint_referenced_ids="signUp_email,signUp_google,signUp_facebook" />
+
+        <Button
+            android:id="@+id/signUp_google"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@android:color/holo_red_dark"
+            android:text="@string/sign_up_with_google"
+            android:textAllCaps="false"
+            android:textSize="@dimen/auth_btn_text_size"
+            android:textStyle="bold"
+            app:icon="@drawable/ic_google"
+            app:iconSize="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/signUp_facebook"
+            app:layout_constraintEnd_toEndOf="@+id/signUp_facebook"
+            app:layout_constraintStart_toStartOf="@+id/signUp_facebook" />
+
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/signUp_facebook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/signUp_email"
+            android:layout_width="194dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/email_login"
+            android:text="@string/sign_up_with_email"
+            android:textAllCaps="false"
+            android:textSize="@dimen/auth_btn_text_size"
+            app:icon="@drawable/ic_email"
+            app:iconSize="20dp"
+            app:layout_constraintEnd_toEndOf="@+id/signUp_facebook"
+            app:layout_constraintStart_toStartOf="@+id/signUp_facebook"
+            app:layout_constraintTop_toBottomOf="@+id/signUp_facebook" />
+
+        <include
+            android:id="@+id/include_auth"
+            layout="@layout/layout_auth"
+            android:layout_width="194dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/signUp_facebook"
+            app:layout_constraintStart_toStartOf="@+id/signUp_facebook"
+            app:layout_constraintTop_toBottomOf="@+id/signUp_email" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
