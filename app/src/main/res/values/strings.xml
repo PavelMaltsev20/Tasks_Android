@@ -9,6 +9,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="login_with_google">Login with google</string>
     <string name="sign_in_with_email">Sign in with @ Email</string>
+    <string name="welcome_to_tasks">Welcome to Tasks</string>
 
 
 </resources>
