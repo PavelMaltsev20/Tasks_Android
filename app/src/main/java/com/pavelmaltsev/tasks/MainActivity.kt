@@ -26,35 +26,35 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        LoginManager.getInstance().logOut();
-
-        sdkInitialize(FacebookSdk.getApplicationContext())
-        binding.loginButton.setReadPermissions("email", "public_profile")
-
-        binding.loginButton.registerCallback(
-            callbackManager,
-            object : FacebookCallback<LoginResult> {
-                override fun onCancel() {
-                    Toast.makeText(
-                        this@MainActivity,
-                        getString(R.string.action_canceled_please_check_facebook_login_and_password),
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
-
-                override fun onError(error: FacebookException) {
-                    Toast.makeText(
-                        this@MainActivity,
-                        getString(R.string.action_failed_please_check_internet_connection),
-                        Toast.LENGTH_LONG
-                    ).show()
-
-                }
-
-                override fun onSuccess(result: LoginResult) {
-                    firebaseAuthWithFacebook(result.accessToken)
-                }
-            });
+//        LoginManager.getInstance().logOut();
+//
+//        sdkInitialize(FacebookSdk.getApplicationContext())
+//        binding.loginButton.setReadPermissions("email", "public_profile")
+//
+//        binding.loginButton.registerCallback(
+//            callbackManager,
+//            object : FacebookCallback<LoginResult> {
+//                override fun onCancel() {
+//                    Toast.makeText(
+//                        this@MainActivity,
+//                        getString(R.string.action_canceled_please_check_facebook_login_and_password),
+//                        Toast.LENGTH_LONG
+//                    ).show()
+//                }
+//
+//                override fun onError(error: FacebookException) {
+//                    Toast.makeText(
+//                        this@MainActivity,
+//                        getString(R.string.action_failed_please_check_internet_connection),
+//                        Toast.LENGTH_LONG
+//                    ).show()
+//
+//                }
+//
+//                override fun onSuccess(result: LoginResult) {
+//                    firebaseAuthWithFacebook(result.accessToken)
+//                }
+//            });
     }
 
     /**
