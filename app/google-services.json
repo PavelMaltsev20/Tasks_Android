@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "522848957256",
+    "project_id": "tasks-moveo",
+    "storage_bucket": "tasks-moveo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:522848957256:android:42b9230fe7d907fd53f97d",
+        "android_client_info": {
+          "package_name": "com.pavelmaltsev.tasks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "522848957256-etloii05389cvjjqj01ihcqm3ftcugns.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pavelmaltsev.tasks",
+            "certificate_hash": "5d773b7fe58f10397c605ec91c6769a19de7e199"
+          }
+        },
+        {
+          "client_id": "522848957256-vul11nth13tkhkicdl34v6ej1i28atjl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBT-rXiv0MQ2gOo2Pl_atmjtG-sp7Nnefo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "522848957256-vul11nth13tkhkicdl34v6ej1i28atjl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
