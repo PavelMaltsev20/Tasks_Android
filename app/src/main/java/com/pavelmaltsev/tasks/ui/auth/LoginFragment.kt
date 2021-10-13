@@ -22,13 +22,10 @@ class LoginFragment : AuthFragment() {
         //Check if let user sign in
         val user = FirebaseAuth.getInstance().currentUser
         if(user != null){
-            showWelcomeToast()
             openTasksFragment()
         }
 
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
-
-
         return binding.root
     }
 
