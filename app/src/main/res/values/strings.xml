@@ -17,4 +17,7 @@
     <string name="sign_up_with_email">Sign up with Email</string>
     <string name="confirm_password">Confirm password</string>
     <string name="error_while_creating_account_with_google">Error while creating account with Google</string>
+    <string name="confirm">Confirm</string>
+    <string name="error_occurred_please_check_internet_connection">Error occurred, please check internet connection</string>
+    <string name="choose_sign_up_method">Choose sign up method</string>
 </resources>

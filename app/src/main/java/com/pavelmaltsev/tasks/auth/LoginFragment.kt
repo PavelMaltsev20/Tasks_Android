@@ -74,8 +74,4 @@ class LoginFragment : AuthFragment() {
             binding.includeAuth.layoutAuthParent.startAnimation(super.fadeIn)
         }
     }
-
-    private fun Group.startFade() =
-        referencedIds.map { rootView.findViewById<View>(it).startAnimation(super.fadeIn) }
-
 }

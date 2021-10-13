@@ -10,24 +10,37 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/enter_email"
+        android:textAlignment="center"
         android:textColor="@color/white"
-        android:textColorHint="@color/email_login" />
+        android:textColorHint="@color/sea_color" />
 
     <EditText
         android:id="@+id/layoutAuth_pass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/enter_password"
+        android:textAlignment="center"
+        android:inputType="textPassword"
         android:textColor="@color/white"
-        android:textColorHint="@color/email_login" />
+        android:textColorHint="@color/sea_color" />
 
     <EditText
         android:id="@+id/layoutAuth_confirmPass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/confirm_password"
+        android:textAlignment="center"
         android:textColor="@color/white"
-        android:textColorHint="@color/email_login"
-        android:visibility="gone"/>
+        android:inputType="textPassword"
+        android:textColorHint="@color/sea_color"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/layoutAuth_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/sea_color"
+        android:text="@string/confirm" />
 
 </LinearLayout>

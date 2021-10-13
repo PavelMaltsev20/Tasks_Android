@@ -3,11 +3,13 @@ package com.pavelmaltsev.tasks.auth
 import android.app.Activity
 import android.content.Intent
 import android.util.Log
+import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.Group
 import androidx.fragment.app.Fragment
 import com.facebook.*
 import com.facebook.FacebookSdk.sdkInitialize
@@ -83,11 +85,7 @@ open class AuthFragment : Fragment() {
                     // If we want use facebook data (Profile image, name, email and etc.)
                     // we can extract it from - facebookUser
                     val facebookUser = auth.currentUser!!
-                    Toast.makeText(
-                        requireContext(),
-                        getString(R.string.welcome_to_tasks_app),
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    showWelcomeToast()
                 } else {
                     Log.e(TAG, "signInWithCredential error: ${task.exception}")
                 }
@@ -95,7 +93,7 @@ open class AuthFragment : Fragment() {
     }
     //endregion
 
-    //region Google Auth
+    //region Google auth
     fun authWithGoogle() {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getText(R.string.default_web_client_id) as String)
@@ -117,15 +115,10 @@ open class AuthFragment : Fragment() {
                 try {
                     // Google Sign In was successful, authenticate with Firebase
                     val account = task.getResult(ApiException::class.java)!!
-
                     firebaseAuthWithGoogle(account.idToken)
                 } catch (e: ApiException) {
                     // Google Sign In failed, update UI appropriately
-                    Toast.makeText(
-                        requireContext(),
-                        getString(R.string.error_while_creating_account_with_google),
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    showErrorToast()
                     throw e
                 }
             }
@@ -140,21 +133,64 @@ open class AuthFragment : Fragment() {
                     //If we need additional data we can use googleUser,
                     //this is same like with facebook
                     val googleUser = auth.currentUser!!
-                    Toast.makeText(
-                        requireContext(),
-                        getString(R.string.welcome_to_tasks_app),
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    showWelcomeToast()
                 } else {
-                    Toast.makeText(
-                        requireContext(),
-                        getString(R.string.error_while_creating_account_with_google),
-                        Toast.LENGTH_SHORT
-                    ).show()
-
+                    showErrorToast()
                 }
             }
     }
     //endregion
 
+    //region Email auth
+    fun signUpWithEmail(email: String, pass: String) {
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, pass)
+            .addOnCompleteListener { task ->
+                if (task.isComplete) {
+                    if (task.isCanceled) {
+                        showErrorToast()
+                    }
+                    if (task.isSuccessful) {
+                        showWelcomeToast()
+                    }
+                } else {
+                    showErrorToast()
+                }
+            }
+    }
+
+    fun signInWithEmail(email: String, pass: String) {
+        FirebaseAuth.getInstance().signInWithEmailAndPassword(email, pass)
+            .addOnCompleteListener { task ->
+                if (task.isComplete) {
+                    if (task.isCanceled) {
+                        showErrorToast()
+                    }
+                    if (task.isSuccessful) {
+                        showWelcomeToast()
+                    }
+                } else {
+                    showErrorToast()
+                }
+            }
+    }
+    //endregion
+
+    private fun showWelcomeToast() {
+        Toast.makeText(
+            requireContext(),
+            getString(R.string.welcome_to_tasks_app),
+            Toast.LENGTH_SHORT
+        ).show()
+    }
+
+    private fun showErrorToast() {
+        Toast.makeText(
+            requireContext(),
+            getString(R.string.error_occurred_please_check_internet_connection),
+            Toast.LENGTH_SHORT
+        ).show()
+    }
+
+    fun Group.startFade() =
+        referencedIds.map { rootView.findViewById<View>(it).startAnimation(fadeIn) }
 }

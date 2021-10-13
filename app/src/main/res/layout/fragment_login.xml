@@ -19,7 +19,7 @@
             android:layout_marginTop="24dp"
             android:fontFamily="@font/amatica_sc"
             android:text="@string/welcome_to_tasks"
-            android:textColor="@color/email_login"
+            android:textColor="@color/sea_color"
             android:textSize="40sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/amatica_sc"
             android:text="@string/create_new_account"
-            android:textColor="@color/email_login"
+            android:textColor="@color/sea_color"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="@+id/signIn_title"
             app:layout_constraintStart_toStartOf="@+id/signIn_title"
@@ -40,15 +40,15 @@
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/signIn_btnGroup"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:constraint_referenced_ids="signIn_email,signIn_google,signIn_facebook" />
 
         <Button
             android:id="@+id/signIn_google"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginTop="64dp"
             android:backgroundTint="@android:color/holo_red_dark"
             android:text="@string/login_with_google"
             android:textAllCaps="false"
@@ -56,27 +56,27 @@
             android:textStyle="bold"
             app:icon="@drawable/ic_google"
             app:iconSize="20dp"
-            app:layout_constraintBottom_toTopOf="@+id/signIn_facebook"
             app:layout_constraintEnd_toEndOf="@+id/signIn_facebook"
-            app:layout_constraintStart_toStartOf="@+id/signIn_facebook" />
+            app:layout_constraintStart_toStartOf="@+id/signIn_facebook"
+            app:layout_constraintTop_toBottomOf="@+id/signIn_newAccount" />
 
         <com.facebook.login.widget.LoginButton
             android:id="@+id/signIn_facebook"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/signIn_google" />
 
         <Button
             android:id="@+id/signIn_email"
             android:layout_width="194dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:backgroundTint="@color/email_login"
+            android:backgroundTint="@color/sea_color"
             android:text="@string/sign_in_with_email"
             android:textAllCaps="false"
             android:textSize="@dimen/auth_btn_text_size"
