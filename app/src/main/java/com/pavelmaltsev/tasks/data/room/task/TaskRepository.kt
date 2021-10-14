@@ -1,4 +1,4 @@
-package com.pavelmaltsev.tasks.data.room
+package com.pavelmaltsev.tasks.data.room.task
 
 import com.pavelmaltsev.tasks.module.Task
 
@@ -16,5 +16,6 @@ class TaskRepository(private val taskDao: TaskDao) {
         taskDao.delete(task)
     }
 
-    suspend fun getList() = taskDao.getList()
+      fun getList() = taskDao.getList()
+
 }

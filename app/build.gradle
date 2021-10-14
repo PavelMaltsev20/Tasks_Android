@@ -58,9 +58,10 @@ dependencies {
     implementation 'com.facebook.android:facebook-android-sdk:latest.release'
     implementation platform('com.google.firebase:firebase-bom:28.4.2')
 
-    kapt "androidx.room:room-compiler:2.3.0"
-    implementation "androidx.room:room-ktx:2.3.0"
-    implementation "androidx.room:room-runtime:2.3.0"
+    ext.roomVersion = "2.3.0"
+    kapt "androidx.room:room-compiler:$roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
+    implementation "androidx.room:room-runtime:$roomVersion"
     annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
 
 }

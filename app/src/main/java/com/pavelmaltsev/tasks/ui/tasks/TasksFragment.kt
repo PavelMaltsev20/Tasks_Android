@@ -37,7 +37,8 @@ class TasksFragment : Fragment() {
 
     private fun initRecyclerView() {
         binding.tasksList.adapter = tasksAdapter
-        binding.tasksList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        binding.tasksList.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         binding.tasksList.hasFixedSize()
     }
 
@@ -60,7 +61,6 @@ class TasksFragment : Fragment() {
             tasksAdapter.notifyDataSetChanged()
         })
     }
-
 
 
 }

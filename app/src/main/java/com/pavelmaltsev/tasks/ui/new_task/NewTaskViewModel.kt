@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.pavelmaltsev.tasks.data.room.MainDatabase
-import com.pavelmaltsev.tasks.data.room.TaskRepository
+import com.pavelmaltsev.tasks.data.room.task.TaskRepository
 import com.pavelmaltsev.tasks.module.Task
 import kotlinx.coroutines.launch
 

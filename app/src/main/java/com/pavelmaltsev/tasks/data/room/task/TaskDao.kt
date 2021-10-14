@@ -1,4 +1,4 @@
-package com.pavelmaltsev.tasks.data.room
+package com.pavelmaltsev.tasks.data.room.task
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -18,5 +18,5 @@ interface TaskDao {
     suspend fun delete(task: Task)
 
     @Query("SELECT * FROM TASK_TABLE")
-    suspend fun getList(): List<Task>
+      fun getList(): LiveData<List<Task>>
 }
