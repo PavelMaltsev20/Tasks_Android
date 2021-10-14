@@ -50,7 +50,7 @@
         app:popUpToInclusive="true" />
     <fragment
         android:id="@+id/manageTaskFragment"
-        android:name="com.pavelmaltsev.tasks.ui.new_task.ManageTaskFragment"
+        android:name="com.pavelmaltsev.tasks.ui.manage_task.ManageTaskFragment"
         android:label="ManageTaskFragment" >
         <argument
             android:name="selectedTask"

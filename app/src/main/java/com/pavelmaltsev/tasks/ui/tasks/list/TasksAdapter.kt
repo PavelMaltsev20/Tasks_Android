@@ -1,11 +1,17 @@
 package com.pavelmaltsev.tasks.ui.tasks.list
 
+import android.net.Uri
+import android.provider.MediaStore
 import android.text.format.DateFormat
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.pavelmaltsev.tasks.databinding.ItemTaskBinding
 import com.pavelmaltsev.tasks.module.Task
+
 
 class TasksAdapter(private val onTaskListener: OnTaskListener) :
     RecyclerView.Adapter<TasksAdapter.ViewHolder>() {
@@ -28,7 +34,16 @@ class TasksAdapter(private val onTaskListener: OnTaskListener) :
         holder.date.text = DateFormat.format("dd.MM", task.date)
         holder.title.text = task.title
         holder.desc.text = task.desc
-        //image.setImageDrawable(task.imaga)
+
+        if (task.imageUrl.length > 1) {
+            holder.image.visibility = View.VISIBLE
+            Glide.with(holder.parent.context)
+                .load(task.imageUrl)
+                .into(holder.image);
+        } else {
+            holder.image.visibility = View.INVISIBLE
+        }
+
 
         holder.parent.setOnClickListener {
             onTaskListener.onTaskClick(task)

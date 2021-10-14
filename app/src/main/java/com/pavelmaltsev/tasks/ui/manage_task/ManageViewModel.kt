@@ -1,4 +1,4 @@
-package com.pavelmaltsev.tasks.ui.new_task
+package com.pavelmaltsev.tasks.ui.manage_task
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

@@ -3,7 +3,6 @@ package com.pavelmaltsev.tasks.module
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.io.Serializable
-import java.util.*
 
 @Entity(tableName = "TASK_TABLE")
 data class Task(
@@ -12,4 +11,5 @@ data class Task(
     val date: Long = 0,
     val title: String = "",
     val desc: String = "",
+    val imageUrl: String = "",
 ) : Serializable

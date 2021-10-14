@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context=".ui.new_task.fsdfs">
+    tools:context=".ui.manage_task.fsdfs">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/newTasl_fragTitle"
+            android:id="@+id/manageTask_fragTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -28,7 +28,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/newTasl_date"
+            android:id="@+id/manageTask_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -36,58 +36,80 @@
             android:paddingBottom="20dp"
             android:text="@string/_02_06_2021"
             android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="@+id/newTasl_fragTitle"
-            app:layout_constraintStart_toStartOf="@+id/newTasl_fragTitle"
-            app:layout_constraintTop_toBottomOf="@+id/newTasl_fragTitle" />
+            app:layout_constraintEnd_toEndOf="@+id/manageTask_fragTitle"
+            app:layout_constraintStart_toStartOf="@+id/manageTask_fragTitle"
+            app:layout_constraintTop_toBottomOf="@+id/manageTask_fragTitle" />
 
         <EditText
-            android:id="@+id/newTasl_title"
+            android:id="@+id/manageTask_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:hint="@string/enter_title"
             android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="@+id/newTasl_fragTitle"
-            app:layout_constraintStart_toStartOf="@+id/newTasl_fragTitle"
-            app:layout_constraintTop_toBottomOf="@+id/newTasl_date" />
+            app:layout_constraintEnd_toEndOf="@+id/manageTask_fragTitle"
+            app:layout_constraintStart_toStartOf="@+id/manageTask_fragTitle"
+            app:layout_constraintTop_toBottomOf="@+id/manageTask_date" />
 
         <EditText
-            android:id="@+id/newTasl_desc"
+            android:id="@+id/manageTask_desc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:hint="@string/enter_description"
             android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="@+id/newTasl_fragTitle"
-            app:layout_constraintStart_toStartOf="@+id/newTasl_fragTitle"
-            app:layout_constraintTop_toBottomOf="@+id/newTasl_title" />
+            app:layout_constraintEnd_toEndOf="@+id/manageTask_fragTitle"
+            app:layout_constraintStart_toStartOf="@+id/manageTask_fragTitle"
+            app:layout_constraintTop_toBottomOf="@+id/manageTask_title" />
 
         <Button
-            android:id="@+id/newTasl_btn"
+            android:id="@+id/manageTask_btn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:backgroundTint="@color/sea_color"
             android:text="@string/save"
-            app:layout_constraintEnd_toEndOf="@+id/newTasl_fragTitle"
-            app:layout_constraintStart_toStartOf="@+id/newTasl_fragTitle"
-            app:layout_constraintTop_toBottomOf="@+id/newTasl_desc" />
+            app:layout_constraintEnd_toEndOf="@+id/manageTask_fragTitle"
+            app:layout_constraintStart_toStartOf="@+id/manageTask_fragTitle"
+            app:layout_constraintTop_toBottomOf="@+id/manageTask_desc" />
 
         <ImageButton
-            android:id="@+id/newTask_remove"
+            android:id="@+id/manageTask_remove"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:background="#007D2B2B"
             android:padding="20dp"
             android:src="@drawable/ic_delete"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@+id/newTasl_fragTitle"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/manageTask_fragTitle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/newTasl_fragTitle"
-            app:layout_constraintTop_toTopOf="@+id/newTasl_fragTitle"
+            app:layout_constraintStart_toEndOf="@+id/manageTask_fragTitle"
+            app:layout_constraintTop_toTopOf="@+id/manageTask_fragTitle"
             app:tint="#D04172" />
+
+        <TextView
+            android:id="@+id/manageTask_addImage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:padding="20dp"
+            android:text="Add image to current task?"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="@+id/manageTask_btn"
+            app:layout_constraintStart_toStartOf="@+id/manageTask_btn"
+            app:layout_constraintTop_toBottomOf="@+id/manageTask_btn" />
+
+        <ImageView
+            android:id="@+id/manageTask_image"
+            android:layout_width="0dp"
+            android:layout_height="500dp"
+            android:src="@drawable/ic_placeholder"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="@+id/manageTask_addImage"
+            app:layout_constraintStart_toStartOf="@+id/manageTask_addImage"
+            app:layout_constraintTop_toBottomOf="@+id/manageTask_addImage" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
