@@ -8,7 +8,7 @@ import java.util.*
 data class Task(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
-    val date: Date = Date(),
+    val date: Long = 0,
     val title: String = "",
     val desc: String = "",
 )
