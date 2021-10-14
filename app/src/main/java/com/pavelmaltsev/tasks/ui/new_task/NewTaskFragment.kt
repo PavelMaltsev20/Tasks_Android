@@ -2,26 +2,31 @@ package com.pavelmaltsev.tasks.ui.new_task
 
 import android.content.Context
 import android.os.Bundle
+import android.text.format.DateFormat
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
+import com.pavelmaltsev.tasks.R
 import com.pavelmaltsev.tasks.databinding.FragmentNewTaskBinding
 import com.pavelmaltsev.tasks.module.Task
+import com.pavelmaltsev.tasks.ui.dialog.calendar.CalendarDialog
+import com.pavelmaltsev.tasks.ui.dialog.calendar.OnDateSelected
 import java.lang.Exception
+import java.util.*
 
-class NewTaskFragment : Fragment() {
+class NewTaskFragment : Fragment(), OnDateSelected {
 
     private val TAG = "NewTaskFragment"
     private var _binding: FragmentNewTaskBinding? = null
     private val binding get() = _binding!!
     private lateinit var selectedTask: Task
+    private var calendar = Calendar.getInstance()
     private val viewModel by lazy {
         ViewModelProvider(this).get(NewTaskViewModel::class.java)
     }
@@ -46,7 +51,10 @@ class NewTaskFragment : Fragment() {
     }
 
     private fun setTaskData() {
+        binding.newTaslFragTitle.text = getText(R.string.update_task)
         binding.newTaskRemove.visibility = View.VISIBLE
+        binding.newTaslDate.text =
+          DateFormat.format("dd.MM.yyyy", selectedTask.date)
         binding.newTaslTitle.setText(selectedTask.title)
         binding.newTaslDesc.setText(selectedTask.desc)
     }
@@ -73,12 +81,20 @@ class NewTaskFragment : Fragment() {
             viewModel.removeTask(selectedTask)
             closeFragment()
         }
+
+        binding.newTaslDate.setOnClickListener {
+            val calendar = CalendarDialog(this)
+            activity?.let { activity ->
+                calendar.show(activity.supportFragmentManager, "Calendar dialog")
+            }
+        }
     }
 
     private fun updateTask() {
+        Log.i("tester ", "updateTask: ${getDate()}")
         val task = Task(
             selectedTask.id,
-            getTime(),
+            getDate(),
             getTitle(),
             getDesc(),
         )
@@ -88,7 +104,7 @@ class NewTaskFragment : Fragment() {
     private fun createNewTask() {
         val task = Task(
             0,
-            getTime(),
+            getDate(),
             getTitle(),
             getDesc()
         )
@@ -96,7 +112,7 @@ class NewTaskFragment : Fragment() {
         viewModel.addTask(task)
     }
 
-    private fun getTime() = System.currentTimeMillis()
+    private fun getDate() = calendar.timeInMillis
     private fun getTitle() = binding.newTaslTitle.text.toString()
     private fun getDesc() = binding.newTaslDesc.text.toString()
 
@@ -113,4 +129,7 @@ class NewTaskFragment : Fragment() {
         Navigation.findNavController(binding.root).popBackStack()
     }
 
+    override fun selectedDate(calendar: Calendar) {
+        this.calendar = calendar
+    }
 }

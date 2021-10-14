@@ -33,4 +33,5 @@
     <string name="exm_of_date">14.10</string>
     <string name="you_don_t_have_tasks_start_add">You don\'t have tasks, start add</string>
     <string name="cancel">Cancel</string>
+    <string name="update_task">Update Task</string>
 </resources>
