@@ -16,5 +16,5 @@ class TaskRepository(private val taskDao: TaskDao) {
         taskDao.delete(task)
     }
 
-//    suspend fun getList() = taskDao.getList()
+    suspend fun getList() = taskDao.getList()
 }

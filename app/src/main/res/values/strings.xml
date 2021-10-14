@@ -28,4 +28,7 @@
     <string name="enter_description">Enter description</string>
     <string name="enter_title">Enter title</string>
     <string name="_02_06_2021">02.06.2021</string>
+    <string name="description">Description</string>
+    <string name="title">Title</string>
+    <string name="exm_of_date">14.10</string>
 </resources>

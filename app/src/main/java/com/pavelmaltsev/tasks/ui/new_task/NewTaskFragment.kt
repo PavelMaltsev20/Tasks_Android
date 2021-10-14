@@ -1,15 +1,16 @@
 package com.pavelmaltsev.tasks.ui.new_task
 
+import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.pavelmaltsev.tasks.databinding.FragmentNewTaskBinding
 import com.pavelmaltsev.tasks.module.Task
-import java.util.*
-
 
 class NewTaskFragment : Fragment() {
 
@@ -38,6 +39,13 @@ class NewTaskFragment : Fragment() {
 
         binding.newTaslBtn.setOnClickListener {
             createNewTask()
+
+            val inputManager =
+                requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputManager.hideSoftInputFromWindow(
+                requireActivity().currentFocus?.windowToken,
+                InputMethodManager.HIDE_NOT_ALWAYS
+            )
         }
     }
 
@@ -53,6 +61,8 @@ class NewTaskFragment : Fragment() {
         )
 
         viewModel.addTask(task)
+
+        Navigation.findNavController(binding.root).popBackStack()
     }
 
 }
