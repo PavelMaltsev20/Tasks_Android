@@ -9,7 +9,7 @@
         android:title="@string/tasks">
         <menu>
             <item
-                android:id="@+id/profileSettingsFragment"
+                android:id="@+id/check_on_github"
                 android:title="@string/check_on_github"
                 android:visible="true"
                 app:showAsAction="collapseActionView" />

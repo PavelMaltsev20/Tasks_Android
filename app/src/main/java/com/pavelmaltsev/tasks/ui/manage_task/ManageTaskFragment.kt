@@ -9,22 +9,24 @@ import android.os.Bundle
 import android.text.format.DateFormat
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.google.android.material.navigation.NavigationView
 import com.pavelmaltsev.tasks.R
 import com.pavelmaltsev.tasks.databinding.FragmentManageTaskBinding
 import com.pavelmaltsev.tasks.module.Task
 import com.pavelmaltsev.tasks.ui.dialog.calendar.CalendarDialog
 import com.pavelmaltsev.tasks.ui.dialog.calendar.OnDateSelected
 import java.util.*
-
 
 class ManageTaskFragment : Fragment(), OnDateSelected {
 
@@ -176,4 +178,6 @@ class ManageTaskFragment : Fragment(), OnDateSelected {
         this.calendar = calendar
         setDate()
     }
+
+
 }

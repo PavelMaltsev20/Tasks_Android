@@ -40,4 +40,6 @@
     <string name="contact_us">Contact us</string>
     <string name="logout">Logout</string>
     <string name="about">About</string>
+    <string name="navigation_drawer_close">Close navigation drawable</string>
+    <string name="navigation_drawer_open">Open navigation drawable</string>
 </resources>
