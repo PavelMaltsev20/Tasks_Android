@@ -2,21 +2,20 @@ package com.pavelmaltsev.tasks.data.room
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.pavelmaltsev.tasks.module.Task
 
-class TaskDao {
-
+@Dao
+interface TaskDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(user: User)
+    suspend fun insert(task: Task)
 
     @Update
-    fun update(user: User)
+    suspend fun update(task: Task)
 
     @Delete
-    fun deleteCurrent(user: User)
+    suspend fun delete(task: Task)
 
-
-    @Query("SELECT * FROM USER_TABLE WHERE id != :userId ORDER BY lastMsg, userName DESC")
-    fun getList(userId: String): LiveData<List<User>>
-
+    @Query("SELECT * FROM TASK_TABLE ORDER BY date, title DESC")
+    suspend fun getList(): LiveData<List<Task>>
 }
