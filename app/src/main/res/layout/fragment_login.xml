@@ -20,7 +20,7 @@
             android:fontFamily="@font/amatica_sc"
             android:text="@string/welcome_to_tasks"
             android:textColor="@color/sea_color"
-            android:textSize="40sp"
+            android:textSize="@dimen/title_text_size"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

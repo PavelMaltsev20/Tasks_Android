@@ -23,4 +23,9 @@
     <string name="short_password_please_choose_long_pass_min_6_symbols">Short password, please choose long pass (min. 6 symbols)</string>
     <string name="please_fill_all_fields">Please fill all fields</string>
     <string name="please_enter_same_password">"Please enter same password "</string>
+    <string name="create_new_task">Create new task</string>
+    <string name="save">Save</string>
+    <string name="enter_description">Enter description</string>
+    <string name="enter_title">Enter title</string>
+    <string name="_02_06_2021">02.06.2021</string>
 </resources>

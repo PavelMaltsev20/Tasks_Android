@@ -27,7 +27,15 @@
         android:id="@+id/tasksFragment"
         android:name="com.pavelmaltsev.tasks.ui.tasks.TasksFragment"
         android:label="fragment_tasks"
-        tools:layout="@layout/fragment_tasks" />
+        tools:layout="@layout/fragment_tasks" >
+        <action
+            android:id="@+id/action_tasksFragment_to_newTaskFragment"
+            app:destination="@id/newTaskFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
     <action
         android:id="@+id/action_global_tasksFragment"
         app:destination="@id/tasksFragment"
@@ -38,4 +46,9 @@
         app:popExitAnim="@anim/nav_default_pop_exit_anim"
         app:popUpTo="@id/loginFragment"
         app:popUpToInclusive="true" />
+    <fragment
+        android:id="@+id/newTaskFragment"
+        android:name="com.pavelmaltsev.tasks.ui.new_task.NewTaskFragment"
+        android:label="fragment_new_task"
+        tools:layout="@layout/fragment_new_task" />
 </navigation>
