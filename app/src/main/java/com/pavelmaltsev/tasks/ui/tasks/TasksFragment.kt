@@ -13,14 +13,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.pavelmaltsev.tasks.R
 import com.pavelmaltsev.tasks.databinding.FragmentNewTaskBinding
 import com.pavelmaltsev.tasks.databinding.FragmentTasksBinding
+import com.pavelmaltsev.tasks.module.Task
+import com.pavelmaltsev.tasks.ui.tasks.list.OnTaskListener
 import com.pavelmaltsev.tasks.ui.tasks.list.TasksAdapter
 
 
-class TasksFragment : Fragment() {
+class TasksFragment : Fragment(), OnTaskListener {
 
     private var _binding: FragmentTasksBinding? = null
     private val binding get() = _binding!!
-    private val tasksAdapter = TasksAdapter()
+    private val tasksAdapter = TasksAdapter(this)
     private val viewModel by lazy {
         ViewModelProvider(this).get(TaskViewModel::class.java)
     }
@@ -57,9 +59,20 @@ class TasksFragment : Fragment() {
         }
 
         viewModel.tasksList.observe(viewLifecycleOwner, {
+            if (it.isEmpty()) {
+                binding.tasksEmptyList.visibility = View.VISIBLE
+            } else {
+                binding.tasksEmptyList.visibility = View.GONE
+            }
             tasksAdapter.setList(it)
             tasksAdapter.notifyDataSetChanged()
         })
+    }
+
+    override fun onTaskClick(task: Task) {
+        val action = TasksFragmentDirections.actionTasksFragmentToNewTaskFragment(task)
+        Navigation.findNavController(binding.root)
+            .navigate(action)
     }
 
 

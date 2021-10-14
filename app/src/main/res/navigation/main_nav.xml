@@ -50,5 +50,9 @@
         android:id="@+id/newTaskFragment"
         android:name="com.pavelmaltsev.tasks.ui.new_task.NewTaskFragment"
         android:label="fragment_new_task"
-        tools:layout="@layout/fragment_new_task" />
+        tools:layout="@layout/fragment_new_task" >
+        <argument
+            android:name="selectedTask"
+            app:argType="com.pavelmaltsev.tasks.module.Task" />
+    </fragment>
 </navigation>
