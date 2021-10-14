@@ -2,11 +2,8 @@ package com.pavelmaltsev.tasks.ui.auth
 
 import android.app.Activity
 import android.content.Intent
-import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
@@ -15,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.Group
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import com.facebook.*
 import com.facebook.FacebookSdk.sdkInitialize
 import com.facebook.login.LoginManager
@@ -49,7 +45,11 @@ open class AuthFragment : Fragment() {
 
         return object : FacebookCallback<LoginResult> {
             override fun onCancel() {
-                showErrorToast()
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.auth_was_cancel),
+                    Toast.LENGTH_SHORT
+                ).show()
             }
 
             override fun onError(error: FacebookException) {

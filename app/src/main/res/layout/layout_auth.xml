@@ -9,7 +9,10 @@
         android:id="@+id/layoutAuth_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@color/auth_edittext_background"
         android:hint="@string/enter_email"
+        android:padding="5dp"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textColorHint="@color/sea_color" />
@@ -18,9 +21,12 @@
         android:id="@+id/layoutAuth_pass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@color/auth_edittext_background"
         android:hint="@string/enter_password"
-        android:textAlignment="center"
         android:inputType="textPassword"
+        android:padding="5dp"
+        android:textAlignment="center"
         android:textColor="@color/white"
         android:textColorHint="@color/sea_color" />
 
@@ -28,10 +34,13 @@
         android:id="@+id/layoutAuth_confirmPass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@color/auth_edittext_background"
         android:hint="@string/confirm_password"
+        android:inputType="textPassword"
+        android:padding="5dp"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:inputType="textPassword"
         android:textColorHint="@color/sea_color"
         android:visibility="gone" />
 

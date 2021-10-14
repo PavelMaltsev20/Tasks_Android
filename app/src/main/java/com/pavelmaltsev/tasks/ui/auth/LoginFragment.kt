@@ -56,9 +56,6 @@ class LoginFragment : AuthFragment() {
             binding.signInFacebook.registerCallback(super.callbackManager, super.authWithFacebook())
         }
 
-        binding.signInTitle.setOnClickListener {
-            openRegisterFragment()
-        }
         binding.signInNewAccount.setOnClickListener {
             openRegisterFragment()
         }

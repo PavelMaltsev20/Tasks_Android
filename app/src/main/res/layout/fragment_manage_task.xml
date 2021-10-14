@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context=".ui.manage_task.fsdfs">
+    android:background="@drawable/manage_background"
+    tools:context=".ui.manage_task.ManageTaskFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -20,7 +21,7 @@
             android:minWidth="@dimen/title_min_width"
             android:text="@string/create_new_task"
             android:textAlignment="center"
-            android:textColor="@color/sea_color"
+            android:textColor="@color/white"
             android:textSize="@dimen/title_text_size"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -33,6 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:paddingTop="20dp"
+            android:textColor="@color/white"
             android:paddingBottom="20dp"
             android:text="@string/_02_06_2021"
             android:textAlignment="center"

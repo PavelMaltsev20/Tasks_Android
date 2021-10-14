@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/img_login"
+    android:background="@drawable/img_auth_background"
     android:fillViewport="true"
     tools:context=".ui.auth.LoginFragment">
 
@@ -13,30 +13,23 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/signIn_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:fontFamily="@font/amatica_sc"
-            android:text="@string/welcome_to_tasks"
-            android:textColor="@color/sea_color"
-            android:textSize="@dimen/title_text_size"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
             android:id="@+id/signIn_newAccount"
-            android:layout_width="wrap_content"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:background="#82FFFFFF"
             android:fontFamily="@font/amatica_sc"
+            android:padding="5dp"
             android:text="@string/create_new_account"
+            android:textAlignment="center"
             android:textColor="@color/sea_color"
-            android:textSize="30sp"
-            app:layout_constraintEnd_toEndOf="@+id/signIn_title"
-            app:layout_constraintStart_toStartOf="@+id/signIn_title"
-            app:layout_constraintTop_toBottomOf="@+id/signIn_title" />
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/signIn_email"
+            app:layout_constraintStart_toStartOf="@+id/signIn_email"
+            app:layout_constraintTop_toBottomOf="@+id/include_auth"
+            app:layout_constraintVertical_bias="1.0" />
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/signIn_btnGroup"
@@ -48,28 +41,29 @@
             android:id="@+id/signIn_google"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="64dp"
+            android:layout_marginBottom="16dp"
             android:backgroundTint="@android:color/holo_red_dark"
-            android:text="@string/login_with_google"
+            android:text="@string/continue_with_google"
             android:textAllCaps="false"
             android:textSize="@dimen/auth_btn_text_size"
             android:textStyle="bold"
             app:icon="@drawable/ic_google"
             app:iconSize="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/signIn_facebook"
             app:layout_constraintEnd_toEndOf="@+id/signIn_facebook"
-            app:layout_constraintStart_toStartOf="@+id/signIn_facebook"
-            app:layout_constraintTop_toBottomOf="@+id/signIn_newAccount" />
+            app:layout_constraintStart_toStartOf="@+id/signIn_facebook" />
 
         <com.facebook.login.widget.LoginButton
             android:id="@+id/signIn_facebook"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signIn_google" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/signIn_email"
@@ -77,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:backgroundTint="@color/sea_color"
-            android:text="@string/sign_in_with_email"
+            android:text="@string/continue_with_email"
             android:textAllCaps="false"
             android:textSize="@dimen/auth_btn_text_size"
             app:icon="@drawable/ic_email"
