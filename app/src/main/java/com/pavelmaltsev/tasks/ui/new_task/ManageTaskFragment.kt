@@ -13,36 +13,35 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.pavelmaltsev.tasks.R
-import com.pavelmaltsev.tasks.databinding.FragmentNewTaskBinding
+import com.pavelmaltsev.tasks.databinding.FragmentManageTaskBinding
 import com.pavelmaltsev.tasks.module.Task
 import com.pavelmaltsev.tasks.ui.dialog.calendar.CalendarDialog
 import com.pavelmaltsev.tasks.ui.dialog.calendar.OnDateSelected
-import java.lang.Exception
 import java.util.*
 
-class NewTaskFragment : Fragment(), OnDateSelected {
+class ManageTaskFragment : Fragment(), OnDateSelected {
 
     private val TAG = "NewTaskFragment"
-    private var _binding: FragmentNewTaskBinding? = null
+    private var _binding: FragmentManageTaskBinding? = null
     private val binding get() = _binding!!
     private lateinit var selectedTask: Task
     private var calendar = Calendar.getInstance()
     private val viewModel by lazy {
-        ViewModelProvider(this).get(NewTaskViewModel::class.java)
+        ViewModelProvider(this).get(ManageViewModel::class.java)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentNewTaskBinding.inflate(inflater, container, false)
+        _binding = FragmentManageTaskBinding.inflate(inflater, container, false)
         checkSelectedTask()
         return binding.root
     }
 
     private fun checkSelectedTask() {
         try {
-            val navArgs: NewTaskFragmentArgs by navArgs()
+            val navArgs: ManageTaskFragmentArgs by navArgs()
             selectedTask = navArgs.selectedTask
             setTaskData()
         } catch (e: Exception) {
@@ -54,7 +53,7 @@ class NewTaskFragment : Fragment(), OnDateSelected {
         binding.newTaslFragTitle.text = getText(R.string.update_task)
         binding.newTaskRemove.visibility = View.VISIBLE
         binding.newTaslDate.text =
-          DateFormat.format("dd.MM.yyyy", selectedTask.date)
+            DateFormat.format("dd.MM.yyyy", selectedTask.date)
         binding.newTaslTitle.setText(selectedTask.title)
         binding.newTaslDesc.setText(selectedTask.desc)
     }

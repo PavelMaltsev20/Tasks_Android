@@ -1,7 +1,6 @@
 package com.pavelmaltsev.tasks.ui.tasks
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,9 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.pavelmaltsev.tasks.R
-import com.pavelmaltsev.tasks.databinding.FragmentNewTaskBinding
 import com.pavelmaltsev.tasks.databinding.FragmentTasksBinding
 import com.pavelmaltsev.tasks.module.Task
 import com.pavelmaltsev.tasks.ui.tasks.list.OnTaskListener
@@ -55,7 +52,7 @@ class TasksFragment : Fragment(), OnTaskListener {
 
         binding.tasksFab.setOnClickListener {
             Navigation.findNavController(binding.root)
-                .navigate(R.id.action_tasksFragment_to_newTaskFragment)
+                .navigate(R.id.action_tasksFragment_to_manageTaskFragment)
         }
 
         viewModel.tasksList.observe(viewLifecycleOwner, {
@@ -70,7 +67,7 @@ class TasksFragment : Fragment(), OnTaskListener {
     }
 
     override fun onTaskClick(task: Task) {
-        val action = TasksFragmentDirections.actionTasksFragmentToNewTaskFragment(task)
+        val action = TasksFragmentDirections.actionTasksFragmentToManageTaskFragment(task)
         Navigation.findNavController(binding.root)
             .navigate(action)
     }

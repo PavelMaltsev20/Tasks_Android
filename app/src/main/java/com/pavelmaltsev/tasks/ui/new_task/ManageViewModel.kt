@@ -8,7 +8,7 @@ import com.pavelmaltsev.tasks.data.room.task.TaskRepository
 import com.pavelmaltsev.tasks.module.Task
 import kotlinx.coroutines.launch
 
-class NewTaskViewModel(application: Application) : AndroidViewModel(application) {
+class ManageViewModel(application: Application) : AndroidViewModel(application) {
 
     private val taskRepository: TaskRepository
 
