@@ -3,6 +3,7 @@
     android:id="@+id/layoutAuth_parent"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layoutDirection="ltr"
     android:orientation="vertical">
 
     <EditText

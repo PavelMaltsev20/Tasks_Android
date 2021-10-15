@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/img_auth_background"
     android:fillViewport="true"
+    android:layoutDirection="ltr"
     tools:context=".ui.auth.LoginFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -79,9 +80,9 @@
             android:layout_marginBottom="4dp"
             android:background="#82FFFFFF"
             android:fontFamily="@font/amatica_sc"
+            android:gravity="center"
             android:padding="5dp"
             android:text="@string/create_new_account"
-            android:textAlignment="center"
             android:textColor="@color/sea_color"
             android:textSize="20sp"
             android:textStyle="bold"

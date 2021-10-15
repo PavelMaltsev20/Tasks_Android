@@ -43,12 +43,16 @@ class LoginFragment : AuthFragment() {
 
         binding.signInBtnGroup.startFade()
 
+        startBlinkAnim()
+        initListeners()
+    }
+
+    private fun startBlinkAnim() {
         val blink = AnimationUtils.loadAnimation(
             requireContext(),
             R.anim.blink
         )
         binding.signInNewAccount.startAnimation(blink)
-        initListeners()
     }
 
     private fun initListeners() {

@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/img_auth_background"
     android:fillViewport="true"
+    android:layoutDirection="ltr"
     tools:context=".ui.auth.LoginFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout

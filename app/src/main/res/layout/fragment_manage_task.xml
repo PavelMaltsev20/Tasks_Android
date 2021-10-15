@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
+    android:layoutDirection="ltr"
     android:background="@drawable/img_manage_background"
     tools:context=".ui.manage_task.ManageTaskFragment">
 

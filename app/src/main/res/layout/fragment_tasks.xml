@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/img_tasks_background"
+    android:layoutDirection="ltr"
     tools:context=".ui.tasks.TasksFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -42,11 +43,11 @@
             android:id="@+id/tasks_list"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/tasks_botNav"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/main_toolbar"
-            tools:listitem="@layout/item_task_list"
-            app:layout_constraintBottom_toTopOf="@id/tasks_botNav"/>
+            tools:listitem="@layout/item_task_list" />
 
         <TextView
             android:id="@+id/tasks_emptyList"
@@ -67,11 +68,11 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
+            android:contentDescription="@string/add_new_task"
             app:layout_constraintBottom_toTopOf="@+id/tasks_botNav"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/ic_add"
-            app:tint="@android:color/white"
-            android:contentDescription="@string/add_new_task" />
+            app:tint="@android:color/white" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/tasks_botNav"
@@ -79,11 +80,11 @@
             android:layout_height="wrap_content"
             android:background="#35FFFFFF"
             app:elevation="0dp"
+            app:itemIconTint="@color/bottom_nav_color"
+            app:itemTextColor="@color/bottom_nav_color"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:menu="@menu/bottom_menu"
-            app:itemTextColor="@color/bottom_nav_color"
-            app:itemIconTint="@color/bottom_nav_color"/>
+            app:menu="@menu/bottom_menu" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -28,10 +28,10 @@
         <action
             android:id="@+id/action_tasksFragment_to_manageTaskFragment"
             app:destination="@id/manageTaskFragment"
-            app:enterAnim="@anim/slide_left"
-            app:exitAnim="@anim/slide_right"
-            app:popEnterAnim="@anim/slide_left"
-            app:popExitAnim="@anim/slide_right" />
+            app:enterAnim="@anim/fast_fade_in"
+            app:exitAnim="@anim/fast_fade_out"
+            app:popEnterAnim="@anim/fast_fade_in"
+            app:popExitAnim="@anim/fast_fade_out" />
     </fragment>
 
     <action
