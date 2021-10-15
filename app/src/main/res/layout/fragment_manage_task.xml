@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:background="@drawable/manage_background"
+    android:background="@drawable/img_manage_background"
     tools:context=".ui.manage_task.ManageTaskFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout

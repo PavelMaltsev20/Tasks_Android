@@ -95,6 +95,7 @@ class ManageTaskFragment : Fragment(), OnDateSelected {
             getDate(),
             getTitle(),
             getDesc(),
+            false,
             imageUri
         )
 

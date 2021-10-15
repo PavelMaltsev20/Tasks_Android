@@ -11,5 +11,6 @@ data class Task(
     val date: Long = 0,
     val title: String = "",
     val desc: String = "",
+    var isComplete: Boolean = false,
     val imageUrl: String = "",
 ) : Serializable

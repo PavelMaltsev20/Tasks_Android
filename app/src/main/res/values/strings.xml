@@ -46,4 +46,6 @@
     <string name="add_new_task">Add new task</string>
     <string name="user_email">User email</string>
     <string name="please_enter_title">Please enter title</string>
+    <string name="shared_pref_name">shared_pref</string>
+    <string name="is_list_mode">isListMode</string>
 </resources>

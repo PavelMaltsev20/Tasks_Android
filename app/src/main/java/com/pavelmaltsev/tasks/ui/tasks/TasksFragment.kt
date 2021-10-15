@@ -1,12 +1,9 @@
 package com.pavelmaltsev.tasks.ui.tasks
 
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.PorterDuff
 import android.net.Uri
 import android.os.Bundle
 import android.text.format.DateFormat
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -16,25 +13,34 @@ import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.facebook.login.LoginManager
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.pavelmaltsev.tasks.R
+import com.pavelmaltsev.tasks.data.enum.DisplayMode
 import com.pavelmaltsev.tasks.data.room.MainDatabase
 import com.pavelmaltsev.tasks.databinding.FragmentTasksBinding
 import com.pavelmaltsev.tasks.module.Task
-import com.pavelmaltsev.tasks.ui.tasks.list.OnTaskListener
+import com.pavelmaltsev.tasks.ui.tasks.list.listeners.OnUpdateListener
 import com.pavelmaltsev.tasks.ui.tasks.list.TasksAdapter
+import com.pavelmaltsev.tasks.ui.tasks.list.listeners.OnCompleteListener
 
 
-class TasksFragment : Fragment(), OnTaskListener,
+class TasksFragment :
+    Fragment(),
+    OnUpdateListener,
+    OnCompleteListener,
     NavigationView.OnNavigationItemSelectedListener {
 
     private var _binding: FragmentTasksBinding? = null
     private val binding get() = _binding!!
-    private val tasksAdapter = TasksAdapter(this)
+    private val tasksAdapter = TasksAdapter(this, this)
+    private val sharedPref by lazy {
+        requireContext().getSharedPreferences(getString(R.string.shared_pref_name), 0)
+    }
+    private val editor by lazy { sharedPref.edit() }
     private val viewModel by lazy {
         ViewModelProvider(this).get(TaskViewModel::class.java)
     }
@@ -63,11 +69,32 @@ class TasksFragment : Fragment(), OnTaskListener,
     }
 
     private fun initRecyclerView() {
+        if (sharedPref.getBoolean(getString(R.string.is_list_mode), true)) {
+            binding.tasksBotNav.selectedItemId = R.id.list
+            displayListMode()
+        } else {
+            binding.tasksBotNav.selectedItemId = R.id.map
+            displayMapMode()
+        }
+
         binding.tasksList.adapter = tasksAdapter
-        binding.tasksList.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         binding.tasksList.hasFixedSize()
     }
+
+    private fun displayListMode() {
+        editor.putBoolean(getString(R.string.is_list_mode), true).apply()
+        binding.tasksList.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        tasksAdapter.setListMode(DisplayMode.LIST_MODE)
+    }
+
+    private fun displayMapMode() {
+        editor.putBoolean(getString(R.string.is_list_mode), false).apply()
+        binding.tasksList.layoutManager =
+            GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
+        tasksAdapter.setListMode(DisplayMode.MAP_MODE)
+    }
+
 
     private fun initListener() {
         binding.tasksFab.setOnClickListener {
@@ -88,7 +115,7 @@ class TasksFragment : Fragment(), OnTaskListener,
         })
     }
 
-    override fun onTaskClick(task: Task) {
+    override fun onUpdate(task: Task) {
         val action = TasksFragmentDirections.actionTasksFragmentToManageTaskFragment(task)
         Navigation.findNavController(binding.root)
             .navigate(action)
@@ -98,11 +125,10 @@ class TasksFragment : Fragment(), OnTaskListener,
         binding.tasksBotNav.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.list -> {
-                    Log.i("tester", "initBottomNavView: 1")
+                    displayListMode()
                 }
                 R.id.map -> {
-                    Log.i("tester", "initBottomNavView: 2")
-
+                    displayMapMode()
                 }
             }
             return@setOnItemSelectedListener true
@@ -164,6 +190,11 @@ class TasksFragment : Fragment(), OnTaskListener,
         }
         binding.tasksDrawable.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    override fun onComplete(task: Task) {
+        task.isComplete = !task.isComplete
+        viewModel.updateTask(task)
     }
     //endregion
 

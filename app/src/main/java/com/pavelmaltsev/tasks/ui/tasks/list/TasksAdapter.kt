@@ -1,63 +1,70 @@
 package com.pavelmaltsev.tasks.ui.tasks.list
 
-import android.net.Uri
-import android.provider.MediaStore
-import android.text.format.DateFormat
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.pavelmaltsev.tasks.databinding.ItemTaskBinding
+import com.pavelmaltsev.tasks.data.enum.DisplayMode
+import com.pavelmaltsev.tasks.databinding.ItemTaskListBinding
+import com.pavelmaltsev.tasks.databinding.ItemTaskMapBinding
 import com.pavelmaltsev.tasks.module.Task
+import com.pavelmaltsev.tasks.ui.tasks.list.listeners.OnCompleteListener
+import com.pavelmaltsev.tasks.ui.tasks.list.listeners.OnUpdateListener
+import com.pavelmaltsev.tasks.ui.tasks.list.viewholders.ListViewHolder
+import com.pavelmaltsev.tasks.ui.tasks.list.viewholders.MapViewHolder
 
 
-class TasksAdapter(private val onTaskListener: OnTaskListener) :
-    RecyclerView.Adapter<TasksAdapter.ViewHolder>() {
+class TasksAdapter(
+    private val onUpdateListener: OnUpdateListener,
+    private val onCompleteListener: OnCompleteListener
+) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var list = listOf<Task>()
+    private var displayMode: DisplayMode = DisplayMode.LIST_MODE
+    private val listMode = 0
+    private val mapMode = 1
 
     fun setList(list: List<Task>) {
         this.list = list
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemTaskBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder(binding)
+    fun setListMode(displayMode: DisplayMode) {
+        this.displayMode = displayMode
+    }
+
+    override fun getItemViewType(position: Int) = if (DisplayMode.LIST_MODE == displayMode) {
+        listMode
+    } else {
+        mapMode
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return if (DisplayMode.LIST_MODE == displayMode) {
+            val binding =
+                ItemTaskListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ListViewHolder(binding, onUpdateListener, onCompleteListener)
+        } else {
+            val binding =
+                ItemTaskMapBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            MapViewHolder(binding, onUpdateListener, onCompleteListener)
+        }
     }
 
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val task = list[position]
 
-        holder.date.text = DateFormat.format("dd.MM", task.date)
-        holder.title.text = task.title
-        holder.desc.text = task.desc
-
-        if (task.imageUrl.length > 1) {
-            holder.image.visibility = View.VISIBLE
-            Glide.with(holder.parent.context)
-                .load(task.imageUrl)
-                .into(holder.image);
-        } else {
-            holder.image.visibility = View.INVISIBLE
+        when (holder.itemViewType) {
+            listMode -> {
+                val holderView = holder as ListViewHolder
+                holderView.displayData(task)
+            }
+            mapMode -> {
+                val holderView = holder as MapViewHolder
+                holderView.displayData(task)
+            }
         }
-
-
-        holder.parent.setOnClickListener {
-            onTaskListener.onTaskClick(task)
-        }
-
     }
 
     override fun getItemCount() = list.size
-
-    class ViewHolder(binding: ItemTaskBinding) : RecyclerView.ViewHolder(binding.root) {
-        val parent = binding.itemTaskParent
-        val date = binding.itemTaskDate
-        val title = binding.itemTaskTitle
-        val desc = binding.itemTaskDesc
-        val image = binding.itemTaskImage
-    }
 }

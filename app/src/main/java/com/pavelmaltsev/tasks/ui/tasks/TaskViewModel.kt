@@ -31,4 +31,10 @@ class TaskViewModel(application: Application) : AndroidViewModel(application) {
             _tasksList = taskRepository.getList()
         }
     }
+
+    fun updateTask(task: Task) {
+        viewModelScope.launch {
+            taskRepository.updateTask(task)
+        }
+    }
 }

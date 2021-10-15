@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/itemTask_parent"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
     android:clickable="true"
@@ -14,59 +15,60 @@
     app:strokeWidth="1dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <ImageView
+            android:id="@+id/itemTask_image"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_placeholder"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_margin="10dp"/>
+
+
+        <TextView
+            android:id="@+id/itemTask_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="#80000000"
+            android:maxLines="1"
+            android:text="@string/title"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/itemTask_desc"
+            app:layout_constraintEnd_toEndOf="@+id/itemTask_image"
+            app:layout_constraintStart_toStartOf="@+id/itemTask_image" />
+
+        <TextView
+            android:id="@+id/itemTask_desc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="#80000000"
+            android:maxLines="1"
+            android:text="@string/description"
+            android:textAlignment="center"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/itemTask_image"
+            app:layout_constraintEnd_toEndOf="@+id/itemTask_image"
+            app:layout_constraintStart_toStartOf="@+id/itemTask_image" />
 
         <TextView
             android:id="@+id/itemTask_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
+            android:background="#80000000"
             android:fontFamily="@font/amatica_sc"
             android:text="@string/exm_of_date"
             android:textColor="#FFFFFF"
             android:textSize="26sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/itemTask_title"
-            android:layout_width="226dp"
-            android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:text="@string/title"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/itemTask_image" />
-
-        <TextView
-            android:id="@+id/itemTask_desc"
-            android:layout_width="258dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:maxLines="1"
-            android:text="@string/description"
-            android:textAlignment="center"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/itemTask_title" />
-
-        <ImageView
-            android:id="@+id/itemTask_image"
-            android:layout_width="175dp"
-            android:layout_height="250dp"
-            android:layout_marginTop="4dp"
-            android:src="@drawable/ic_placeholder"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="@+id/itemTask_image"
+            app:layout_constraintTop_toTopOf="@+id/itemTask_image" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
