@@ -30,8 +30,7 @@ import com.pavelmaltsev.tasks.ui.tasks.list.TasksAdapter
 
 
 class TasksFragment : Fragment(), OnTaskListener,
-    NavigationView.OnNavigationItemSelectedListener,
-    BottomNavigationView.OnNavigationItemSelectedListener {
+    NavigationView.OnNavigationItemSelectedListener {
 
     private var _binding: FragmentTasksBinding? = null
     private val binding get() = _binding!!
@@ -57,6 +56,7 @@ class TasksFragment : Fragment(), OnTaskListener,
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView()
+        initBottomNavView()
         initDrawableLayout()
         initListener()
         initObserver()
@@ -94,6 +94,21 @@ class TasksFragment : Fragment(), OnTaskListener,
             .navigate(action)
     }
 
+    private fun initBottomNavView() {
+        binding.tasksBotNav.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.list -> {
+                    Log.i("tester", "initBottomNavView: 1")
+                }
+                R.id.map -> {
+                    Log.i("tester", "initBottomNavView: 2")
+
+                }
+            }
+            return@setOnItemSelectedListener true
+        }
+    }
+
     //region Drawable
     private fun initDrawableLayout() {
         setUpNavigationView()
@@ -110,7 +125,6 @@ class TasksFragment : Fragment(), OnTaskListener,
 
     private fun setUpNavigationView() {
         binding.mainNavView.setNavigationItemSelectedListener(this)
-        binding.tasksBotNav.setOnNavigationItemSelectedListener(this)
         binding.mainNavView.bringToFront()
     }
 
@@ -131,9 +145,6 @@ class TasksFragment : Fragment(), OnTaskListener,
         )
         binding.tasksDrawable.addDrawerListener(toggle)
         toggle.syncState()
-
-        binding.mainToolbar.navigationIcon!!.setColorFilter(Color.WHITE, PorterDuff.Mode.LIGHTEN);
-
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -149,12 +160,6 @@ class TasksFragment : Fragment(), OnTaskListener,
                 LoginManager.getInstance().logOut()
                 MainDatabase.INSTANCE = null
                 requireActivity().finish()
-            }
-            R.id.list -> {
-                Log.i("tester", "4: ")
-            }
-            R.id.map -> {
-                Log.i("tester", "5: ")
             }
         }
         binding.tasksDrawable.closeDrawer(GravityCompat.START)
