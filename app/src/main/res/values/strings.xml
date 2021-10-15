@@ -45,4 +45,5 @@
     <string name="date_exm">14.10.2021</string>
     <string name="add_new_task">Add new task</string>
     <string name="user_email">User email</string>
+    <string name="please_enter_title">Please enter title</string>
 </resources>

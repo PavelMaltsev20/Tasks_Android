@@ -13,6 +13,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
@@ -31,14 +32,14 @@ import java.util.*
 class ManageTaskFragment : Fragment(), OnDateSelected {
 
     private val TAG = "NewTaskFragment"
-    private var _binding: FragmentManageTaskBinding? = null
-    private val binding get() = _binding!!
-    private lateinit var selectedTask: Task
-    private var imageUri = ""
-    private var calendar = Calendar.getInstance()
     private val viewModel by lazy {
         ViewModelProvider(this).get(ManageViewModel::class.java)
     }
+    private lateinit var selectedTask: Task
+    private var _binding: FragmentManageTaskBinding? = null
+    private val binding get() = _binding!!
+    private var calendar = Calendar.getInstance()
+    private var imageUri = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,11 +49,6 @@ class ManageTaskFragment : Fragment(), OnDateSelected {
         checkSelectedTask()
         setDate()
         return binding.root
-    }
-
-    private fun setDate() {
-        binding.manageTaskDate.text =
-            DateFormat.format("dd.MM.yyyy", calendar)
     }
 
     private fun checkSelectedTask() {
@@ -65,14 +61,20 @@ class ManageTaskFragment : Fragment(), OnDateSelected {
         }
     }
 
+    private fun setDate() {
+        binding.manageTaskDate.text =
+            DateFormat.format("dd.MM.yyyy", calendar)
+    }
+
     private fun setTaskData() {
         binding.manageTaskFragTitle.text = getText(R.string.update_task)
         binding.manageTaskRemove.visibility = View.VISIBLE
         binding.manageTaskTitle.setText(selectedTask.title)
         binding.manageTaskDesc.setText(selectedTask.desc)
-        imageUri = selectedTask.imageUrl
         calendar.timeInMillis = selectedTask.date
-        displayImage()
+        imageUri = selectedTask.imageUrl
+        if (imageUri.isNotEmpty())
+            displayImage()
     }
 
     override fun onDestroy() {
@@ -158,7 +160,20 @@ class ManageTaskFragment : Fragment(), OnDateSelected {
     }
 
     private fun getDate() = calendar.timeInMillis
-    private fun getTitle() = binding.manageTaskTitle.text.toString()
+    private fun getTitle(): String {
+        val title = binding.manageTaskTitle.text.toString()
+        if (title.isEmpty()) {
+            Toast.makeText(
+                requireContext(),
+                getString(R.string.please_enter_title),
+                Toast.LENGTH_SHORT
+            ).show()
+            return ""
+        }
+
+        return title
+    }
+
     private fun getDesc() = binding.manageTaskDesc.text.toString()
 
     private fun hideKeyboard() {
