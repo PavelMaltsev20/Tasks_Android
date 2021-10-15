@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
@@ -186,6 +187,14 @@ class TasksFragment :
                 LoginManager.getInstance().logOut()
                 MainDatabase.INSTANCE = null
                 requireActivity().finish()
+            }
+            R.id.explanation -> {
+                editor.putBoolean(getString(R.string.is_explanation_showed), false).apply()
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.close_and_open_the_app_to_see_the_explanation),
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
         binding.tasksDrawable.closeDrawer(GravityCompat.START)

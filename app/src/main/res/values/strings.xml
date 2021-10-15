@@ -48,4 +48,12 @@
     <string name="please_enter_title">Please enter title</string>
     <string name="shared_pref_name">shared_pref</string>
     <string name="is_list_mode">isListMode</string>
+    <string name="ok">Ok</string>
+    <string name="title_expl_2">Short explanation 1/2</string>
+    <string name="title_expl_1">Short explanation 2/2</string>
+    <string name="msg_expl_1">Long click - will open a window for changing the task</string>
+    <string name="msg_expl_2">One click - on a task will mark it as completed</string>
+    <string name="is_explanation_showed">isExplanationShowed</string>
+    <string name="show_explanation">Show explanation</string>
+    <string name="close_and_open_the_app_to_see_the_explanation">Close and open the app to see the explanation</string>
 </resources>
