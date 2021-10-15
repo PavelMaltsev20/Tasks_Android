@@ -46,16 +46,7 @@ class TasksFragment : Fragment(), OnTaskListener,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentTasksBinding.inflate(inflater, container, false)
-        initRecyclerView()
-
         return binding.root
-    }
-
-    private fun initRecyclerView() {
-        binding.tasksList.adapter = tasksAdapter
-        binding.tasksList.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        binding.tasksList.hasFixedSize()
     }
 
     override fun onDestroy() {
@@ -65,14 +56,27 @@ class TasksFragment : Fragment(), OnTaskListener,
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        initRecyclerView()
         initDrawableLayout()
+        initListener()
+        initObserver()
+    }
 
+    private fun initRecyclerView() {
+        binding.tasksList.adapter = tasksAdapter
+        binding.tasksList.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        binding.tasksList.hasFixedSize()
+    }
+
+    private fun initListener() {
         binding.tasksFab.setOnClickListener {
             Navigation.findNavController(binding.root)
                 .navigate(R.id.action_tasksFragment_to_manageTaskFragment)
         }
+    }
 
+    private fun initObserver() {
         viewModel.tasksList.observe(viewLifecycleOwner, {
             if (it.isEmpty()) {
                 binding.tasksEmptyList.visibility = View.VISIBLE

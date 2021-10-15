@@ -3,25 +3,20 @@ package com.pavelmaltsev.tasks.ui.manage_task
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Bundle
 import android.text.format.DateFormat
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
-import com.google.android.material.navigation.NavigationView
 import com.pavelmaltsev.tasks.R
 import com.pavelmaltsev.tasks.databinding.FragmentManageTaskBinding
 import com.pavelmaltsev.tasks.module.Task
@@ -46,9 +41,14 @@ class ManageTaskFragment : Fragment(), OnDateSelected {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentManageTaskBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         checkSelectedTask()
         setDate()
-        return binding.root
+        initListeners()
     }
 
     private fun checkSelectedTask() {
@@ -61,38 +61,10 @@ class ManageTaskFragment : Fragment(), OnDateSelected {
         }
     }
 
-    private fun setDate() {
-        binding.manageTaskDate.text =
-            DateFormat.format("dd.MM.yyyy", calendar)
-    }
-
-    private fun setTaskData() {
-        binding.manageTaskFragTitle.text = getText(R.string.update_task)
-        binding.manageTaskRemove.visibility = View.VISIBLE
-        binding.manageTaskTitle.setText(selectedTask.title)
-        binding.manageTaskDesc.setText(selectedTask.desc)
-        calendar.timeInMillis = selectedTask.date
-        imageUri = selectedTask.imageUrl
-        if (imageUri.isNotEmpty())
-            displayImage()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    private fun initListeners() {
         binding.manageTaskBtn.setOnClickListener {
-            if (this::selectedTask.isInitialized) {
-                updateTask()
-            } else {
-                createNewTask()
-            }
+            manageTask()
             hideKeyboard()
-            closeFragment()
         }
 
         binding.manageTaskRemove.setOnClickListener {
@@ -112,6 +84,40 @@ class ManageTaskFragment : Fragment(), OnDateSelected {
         }
     }
 
+    private fun manageTask() {
+        if (getTitle().isEmpty()) {
+            Toast.makeText(requireContext(), R.string.please_enter_title, Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val task = Task(
+            0,
+            getDate(),
+            getTitle(),
+            getDesc(),
+            imageUri
+        )
+
+        if (this::selectedTask.isInitialized) {
+            task.id = selectedTask.id
+            viewModel.updateTask(task)
+        } else {
+            viewModel.addTask(task)
+        }
+
+        closeFragment()
+    }
+
+    private fun setTaskData() {
+        binding.manageTaskFragTitle.text = getText(R.string.update_task)
+        binding.manageTaskRemove.visibility = View.VISIBLE
+        binding.manageTaskTitle.setText(selectedTask.title)
+        binding.manageTaskDesc.setText(selectedTask.desc)
+        calendar.timeInMillis = selectedTask.date
+        imageUri = selectedTask.imageUrl
+        if (imageUri.isNotEmpty())
+            setImage()
+    }
 
     private fun openGallery() {
         val intent = Intent()
@@ -124,11 +130,16 @@ class ManageTaskFragment : Fragment(), OnDateSelected {
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 imageUri = result.data!!.data!!.toString()
-                displayImage()
+                setImage()
             }
         }
 
-    private fun displayImage() {
+    private fun setDate() {
+        binding.manageTaskDate.text =
+            DateFormat.format("dd.MM.yyyy", calendar)
+    }
+
+    private fun setImage() {
         binding.manageTaskImage.visibility = View.VISIBLE
         Glide.with(requireContext())
             .load(imageUri)
@@ -136,44 +147,8 @@ class ManageTaskFragment : Fragment(), OnDateSelected {
             .into(binding.manageTaskImage)
     }
 
-    private fun updateTask() {
-        val task = Task(
-            selectedTask.id,
-            getDate(),
-            getTitle(),
-            getDesc(),
-            imageUri
-        )
-        viewModel.updateTask(task)
-    }
-
-    private fun createNewTask() {
-        val task = Task(
-            0,
-            getDate(),
-            getTitle(),
-            getDesc(),
-            imageUri
-        )
-
-        viewModel.addTask(task)
-    }
-
     private fun getDate() = calendar.timeInMillis
-    private fun getTitle(): String {
-        val title = binding.manageTaskTitle.text.toString()
-        if (title.isEmpty()) {
-            Toast.makeText(
-                requireContext(),
-                getString(R.string.please_enter_title),
-                Toast.LENGTH_SHORT
-            ).show()
-            return ""
-        }
-
-        return title
-    }
-
+    private fun getTitle() = binding.manageTaskTitle.text.toString()
     private fun getDesc() = binding.manageTaskDesc.text.toString()
 
     private fun hideKeyboard() {
@@ -189,10 +164,13 @@ class ManageTaskFragment : Fragment(), OnDateSelected {
         Navigation.findNavController(binding.root).popBackStack()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+
     override fun selectedDate(calendar: Calendar) {
         this.calendar = calendar
         setDate()
     }
-
-
 }

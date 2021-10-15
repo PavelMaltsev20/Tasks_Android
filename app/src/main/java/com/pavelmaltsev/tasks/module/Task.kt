@@ -7,7 +7,7 @@ import java.io.Serializable
 @Entity(tableName = "TASK_TABLE")
 data class Task(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    var id: Int,
     val date: Long = 0,
     val title: String = "",
     val desc: String = "",
