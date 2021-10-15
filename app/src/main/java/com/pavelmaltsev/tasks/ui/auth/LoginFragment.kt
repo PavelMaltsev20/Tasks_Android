@@ -4,8 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.navigation.Navigation
+import com.facebook.FacebookSdk
+import com.facebook.FacebookSdk.getApplicationContext
 import com.google.firebase.auth.FirebaseAuth
 import com.pavelmaltsev.tasks.R
 import com.pavelmaltsev.tasks.databinding.FragmentLoginBinding
@@ -38,6 +42,12 @@ class LoginFragment : AuthFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.signInBtnGroup.startFade()
+
+        val blink = AnimationUtils.loadAnimation(
+            requireContext(),
+            R.anim.blink
+        )
+        binding.signInNewAccount.startAnimation(blink)
         initListeners()
     }
 

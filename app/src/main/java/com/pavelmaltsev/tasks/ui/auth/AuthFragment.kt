@@ -13,6 +13,7 @@ import androidx.constraintlayout.widget.Group
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.facebook.*
+import com.facebook.FacebookSdk.getApplicationContext
 import com.facebook.FacebookSdk.sdkInitialize
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
@@ -30,11 +31,11 @@ open class AuthFragment : Fragment() {
     private val TAG = "AuthFragment"
 
     val fadeIn: Animation = AnimationUtils.loadAnimation(
-        FacebookSdk.getApplicationContext(),
+        getApplicationContext(),
         R.anim.fade_in
     )
     val fadeOut: Animation = AnimationUtils.loadAnimation(
-        FacebookSdk.getApplicationContext(),
+        getApplicationContext(),
         R.anim.fade_out
     )
 
@@ -175,7 +176,7 @@ open class AuthFragment : Fragment() {
     }
     //endregion
 
-    fun showWelcomeToast() {
+    private fun showWelcomeToast() {
         Toast.makeText(
             requireContext(),
             getString(R.string.welcome_to_tasks_app),
