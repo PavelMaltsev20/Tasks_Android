@@ -42,4 +42,7 @@
     <string name="about">About</string>
     <string name="navigation_drawer_close">Close navigation drawable</string>
     <string name="navigation_drawer_open">Open navigation drawable</string>
+    <string name="date_exm">14.10.2021</string>
+    <string name="add_new_task">Add new task</string>
+    <string name="user_email">User email</string>
 </resources>

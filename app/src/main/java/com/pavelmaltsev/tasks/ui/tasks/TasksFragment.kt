@@ -1,23 +1,28 @@
 package com.pavelmaltsev.tasks.ui.tasks
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.PorterDuff
+import android.net.Uri
 import android.os.Bundle
+import android.text.format.DateFormat
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.facebook.login.LoginManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.color.MaterialColors.getColor
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
 import com.pavelmaltsev.tasks.R
+import com.pavelmaltsev.tasks.data.room.MainDatabase
 import com.pavelmaltsev.tasks.databinding.FragmentTasksBinding
 import com.pavelmaltsev.tasks.module.Task
 import com.pavelmaltsev.tasks.ui.tasks.list.OnTaskListener
@@ -34,6 +39,7 @@ class TasksFragment : Fragment(), OnTaskListener,
     private val viewModel by lazy {
         ViewModelProvider(this).get(TaskViewModel::class.java)
     }
+    private val userEmailIndex = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -86,14 +92,29 @@ class TasksFragment : Fragment(), OnTaskListener,
 
     //region Drawable
     private fun initDrawableLayout() {
-        setToolbar()
-        setToggleActionBar()
         setUpNavigationView()
+        setUserEmailInDrawable()
+        setToolbarDate()
+        setToggleActionBar()
+    }
+
+    private fun setUserEmailInDrawable() {
+        val menu = binding.mainNavView.menu
+        val menuItem = menu.getItem(userEmailIndex)
+        menuItem.title = FirebaseAuth.getInstance().currentUser!!.email
     }
 
     private fun setUpNavigationView() {
         binding.mainNavView.setNavigationItemSelectedListener(this)
+        binding.tasksBotNav.setOnNavigationItemSelectedListener(this)
         binding.mainNavView.bringToFront()
+    }
+
+    private fun setToolbarDate() {
+        binding.tasksToolbarDate.text = DateFormat.format(
+            "dd.MM.yyyy",
+            System.currentTimeMillis()
+        )
     }
 
     private fun setToggleActionBar() {
@@ -104,8 +125,6 @@ class TasksFragment : Fragment(), OnTaskListener,
             R.string.navigation_drawer_open,
             R.string.navigation_drawer_close
         )
-
-        toggle.drawerArrowDrawable.color = (resources.getColor(R.color.sea_color))
         binding.tasksDrawable.addDrawerListener(toggle)
         toggle.syncState()
 
@@ -113,21 +132,19 @@ class TasksFragment : Fragment(), OnTaskListener,
 
     }
 
-    private fun setToolbar() {
-        binding.mainToolbar.setTitleTextColor(resources.getColor(R.color.sea_color))
-    }
-
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.check_on_github -> {
-                Log.i("tester", "1: ")
-            }
-            R.id.contact_us -> {
-                Log.i("tester", "2: ")
-
+                val uri =
+                    Uri.parse("https://github.com/PavelMaltsev20/Tasks_Android")
+                val intent = Intent(Intent.ACTION_VIEW, uri)
+                startActivity(intent)
             }
             R.id.logout -> {
-                Log.i("tester", "3: ")
+                FirebaseAuth.getInstance().signOut()
+                LoginManager.getInstance().logOut()
+                MainDatabase.INSTANCE = null
+                requireActivity().finish()
             }
             R.id.list -> {
                 Log.i("tester", "4: ")

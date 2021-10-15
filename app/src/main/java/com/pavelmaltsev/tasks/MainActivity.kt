@@ -1,6 +1,7 @@
 package com.pavelmaltsev.tasks
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.pavelmaltsev.tasks.databinding.ActivityMainBinding
 
