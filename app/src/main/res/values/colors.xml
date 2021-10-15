@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="sea_color">#16B0C0</color>
     <color name="auth_edittext_background">#E6FFFFFF</color>
+    <color name="google_red_color">#DB4437</color>
 </resources>

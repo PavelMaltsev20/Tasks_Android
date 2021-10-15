@@ -42,7 +42,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:backgroundTint="@android:color/holo_red_dark"
+            android:backgroundTint="@color/google_red_color"
             android:text="@string/continue_with_google"
             android:textAllCaps="false"
             android:textSize="@dimen/auth_btn_text_size"
