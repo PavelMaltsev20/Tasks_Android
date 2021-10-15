@@ -14,7 +14,7 @@ Overview:
   
 An application for recording daily tasks.
 
-User can be registered using **Google**, **Facebook** or **e-mail**.
+Users can be registered using **Google**, **Facebook** or **email**.
 
 An application saves all data on the internal memory by Jetpack **Room** library.
 
@@ -26,7 +26,7 @@ Also the user can attach a photo of the task.
 
 Any user can view the source code by simply clicking on the GitHub button in the menu
 
-Appication have animation while switching screens.
+Application have animation while switching screens.
 
 You can see additional features in the images below. 
 
