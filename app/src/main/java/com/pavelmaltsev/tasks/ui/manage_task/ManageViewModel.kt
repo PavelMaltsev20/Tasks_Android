@@ -2,6 +2,7 @@ package com.pavelmaltsev.tasks.ui.manage_task
 
 import android.app.Application
 import android.location.Location
+import android.net.Uri
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.pavelmaltsev.tasks.data.room.MainDatabase
@@ -55,6 +56,12 @@ class ManageViewModel(application: Application) : AndroidViewModel(application) 
         val lat = String.format("%.3f", latitude)
         val long = String.format("%.3f", longitude)
         return "lat: $lat, long: $long"
+    }
+
+    fun getMapUri(): Uri {
+        val strUri =
+            "http://maps.google.com/maps?q=loc:${_latitude},${_longitude}(A)"
+        return Uri.parse(strUri)
     }
 
 }

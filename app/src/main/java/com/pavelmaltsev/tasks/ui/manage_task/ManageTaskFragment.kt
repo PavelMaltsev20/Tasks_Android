@@ -133,9 +133,7 @@ class ManageTaskFragment : Fragment(), OnDateSelected {
         }
 
         binding.manageTaskOpenMap.setOnClickListener {
-            val strUri =
-                "http://maps.google.com/maps?q=loc:${viewModel.latitude},${viewModel.longitude}(A)"
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(strUri))
+            val intent = Intent(Intent.ACTION_VIEW, viewModel.getMapUri())
             requireContext().startActivity(intent)
         }
     }
