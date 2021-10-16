@@ -37,7 +37,10 @@ class MapViewHolder(
                 .placeholder(R.drawable.ic_placeholder)
                 .into(binding.itemTaskImage)
         } else {
-            binding.itemTaskImage.visibility = View.INVISIBLE
+            binding.itemTaskImage.visibility = View.VISIBLE
+            Glide.with(binding.root)
+                .load(R.drawable.ic_placeholder)
+                .into(binding.itemTaskImage)
         }
 
         //Display completed task

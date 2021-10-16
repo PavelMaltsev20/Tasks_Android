@@ -56,4 +56,6 @@
     <string name="is_explanation_showed">isExplanationShowed</string>
     <string name="show_explanation">Show explanation</string>
     <string name="close_and_open_the_app_to_see_the_explanation">Close and open the app to see the explanation</string>
+    <string name="add_location">Add location?</string>
+    <string name="add_image_to_current_task">Add image to current task?</string>
 </resources>

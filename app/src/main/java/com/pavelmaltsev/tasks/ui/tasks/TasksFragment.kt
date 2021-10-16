@@ -28,7 +28,6 @@ import com.pavelmaltsev.tasks.ui.tasks.list.listeners.OnUpdateListener
 import com.pavelmaltsev.tasks.ui.tasks.list.TasksAdapter
 import com.pavelmaltsev.tasks.ui.tasks.list.listeners.OnCompleteListener
 
-
 class TasksFragment :
     Fragment(),
     OnUpdateListener,

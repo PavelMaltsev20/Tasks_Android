@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/img_manage_background"
     android:fillViewport="true"
     android:layoutDirection="ltr"
-    android:background="@drawable/img_manage_background"
     tools:context=".ui.manage_task.ManageTaskFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -35,13 +35,28 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:paddingTop="20dp"
-            android:textColor="@color/white"
             android:paddingBottom="20dp"
             android:text="@string/_02_06_2021"
             android:textAlignment="center"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="@+id/manageTask_fragTitle"
             app:layout_constraintStart_toStartOf="@+id/manageTask_fragTitle"
             app:layout_constraintTop_toBottomOf="@+id/manageTask_fragTitle" />
+
+
+        <TextView
+            android:id="@+id/manageTask_location"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:text="@string/add_location"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@+id/manageTask_fragTitle"
+            app:layout_constraintStart_toStartOf="@+id/manageTask_fragTitle"
+            app:layout_constraintTop_toBottomOf="@+id/manageTask_date" />
 
         <EditText
             android:id="@+id/manageTask_title"
@@ -52,7 +67,7 @@
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="@+id/manageTask_fragTitle"
             app:layout_constraintStart_toStartOf="@+id/manageTask_fragTitle"
-            app:layout_constraintTop_toBottomOf="@+id/manageTask_date" />
+            app:layout_constraintTop_toBottomOf="@+id/manageTask_location" />
 
         <EditText
             android:id="@+id/manageTask_desc"
@@ -98,7 +113,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:padding="20dp"
-            android:text="Add image to current task?"
+            android:text="@string/add_image_to_current_task"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="@+id/manageTask_btn"
             app:layout_constraintStart_toStartOf="@+id/manageTask_btn"
