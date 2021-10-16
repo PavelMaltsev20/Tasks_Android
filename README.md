@@ -61,5 +61,5 @@ You can see additional features in the images below.
 
 
 |location|
-|--|--|
-|<div align="center"><img src="https://github.com/PavelMaltsev20/Tasks_Android/blob/master/documentation/location.gif?raw=true" width="170" height="320"> </div>| <div align="center">
+|--|
+|<div align="center"><img src="https://github.com/PavelMaltsev20/Tasks_Android/blob/master/documentation/location.gif?raw=true" width="170" height="320"> </div>| <div align="center">|
