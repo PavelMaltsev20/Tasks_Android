@@ -14,7 +14,7 @@ Overview:
   
 An application for recording daily tasks.
 
-Users can be registered using **Google**, **Facebook** or **email**.
+User can be registered using **Google**, **Facebook** or **e-mail**.
 
 An application saves all data on the internal memory by Jetpack **Room** library.
 
@@ -22,11 +22,13 @@ Jetpack **Navigation** library is used to change between screens.
 
 The user can mark completed tasks and they will go down the list.
 
-Also the user can attach a photo of the task.
+The user can also **attach his location** to this task
 
-Any user can view the source code by simply clicking on the GitHub button in the menu
+Also the user can **attach a photo** of the task.
 
-Application have animation while switching screens.
+Any user can view the **source code** by simply clicking on the GitHub button in the menu
+
+Appication have **animations** while switching screens.
 
 You can see additional features in the images below. 
 
@@ -56,3 +58,8 @@ You can see additional features in the images below.
 |Open on GitHub| Display like list or map|
 |--|--|
 |<div align="center"><img src="https://github.com/PavelMaltsev20/Tasks_Android/blob/master/documentation/github.gif?raw=true" width="170" height="320"> </div>| <div align="center"><img src="https://github.com/PavelMaltsev20/Tasks_Android/blob/master/documentation/list_map.gif?raw=true" width="170" height="320"></div>  | |
+
+
+|location|
+|--|
+|<div align="center"><img src="https://github.com/PavelMaltsev20/Tasks_Android/blob/master/documentation/location.gif?raw=true" width="170" height="320"> </div>| <div align="center">|
