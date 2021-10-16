@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Tasks</string>
     <string name="facebook_app_id">3063264823996028</string>
+    <string name="facebook_client_token">9171b1f361998d283d6c711c0b21c04c</string>
     <string name="fb_login_protocol_scheme">fb3063264823996028</string>
     <string name="action_failed_please_check_internet_connection">Action failed, please check internet connection</string>
     <string name="action_canceled_please_check_facebook_login_and_password">Action canceled, please check facebook login and password</string>
@@ -58,4 +59,5 @@
     <string name="close_and_open_the_app_to_see_the_explanation">Close and open the app to see the explanation</string>
     <string name="add_location">Add location?</string>
     <string name="add_image_to_current_task">Add image to current task?</string>
+    <string name="please_turn_on_gps">Please turn on GPS</string>
 </resources>

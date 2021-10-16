@@ -58,6 +58,29 @@
             app:layout_constraintStart_toStartOf="@+id/manageTask_fragTitle"
             app:layout_constraintTop_toBottomOf="@+id/manageTask_date" />
 
+        <ProgressBar
+            android:id="@+id/manageTask_pb"
+            android:layout_width="@dimen/progress_bar_size"
+            android:layout_height="@dimen/progress_bar_size"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/manageTask_location"
+            app:layout_constraintEnd_toEndOf="@+id/manageTask_location"
+            app:layout_constraintStart_toStartOf="@+id/manageTask_location"
+            app:layout_constraintTop_toTopOf="@+id/manageTask_location" />
+
+        <ImageButton
+            android:id="@+id/manageTask_openMap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00FFFFFF"
+            android:padding="20dp"
+            android:src="@drawable/ic_location"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/manageTask_location"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/manageTask_location"
+            app:layout_constraintTop_toTopOf="@+id/manageTask_location" />
+
         <EditText
             android:id="@+id/manageTask_title"
             android:layout_width="0dp"

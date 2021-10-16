@@ -13,4 +13,6 @@ data class Task(
     val desc: String = "",
     var isComplete: Boolean = false,
     val imageUrl: String = "",
+    val latitude: Double = 0.0,
+    val longitude: Double = 0.0,
 ) : Serializable
