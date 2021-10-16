@@ -28,8 +28,8 @@ import com.google.android.gms.location.*
 import com.pavelmaltsev.tasks.R
 import com.pavelmaltsev.tasks.databinding.FragmentManageTaskBinding
 import com.pavelmaltsev.tasks.module.Task
-import com.pavelmaltsev.tasks.ui.dialog.calendar.CalendarDialog
-import com.pavelmaltsev.tasks.ui.dialog.calendar.OnDateSelected
+import com.pavelmaltsev.tasks.ui.dialogs.calendar.CalendarDialog
+import com.pavelmaltsev.tasks.ui.dialogs.calendar.OnDateSelected
 import java.util.*
 
 class ManageTaskFragment : Fragment(), OnDateSelected {
@@ -155,6 +155,7 @@ class ManageTaskFragment : Fragment(), OnDateSelected {
             requestLocationPermission()
         }
 
+        Log.i("tester", "reached this line. ")
         val locationManager = requireContext().getSystemService(LOCATION_SERVICE) as LocationManager
         locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
 

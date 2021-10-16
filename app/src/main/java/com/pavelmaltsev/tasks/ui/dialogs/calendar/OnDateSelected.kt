@@ -1,4 +1,4 @@
-package com.pavelmaltsev.tasks.ui.dialog.calendar
+package com.pavelmaltsev.tasks.ui.dialogs.calendar
 
 import java.util.*
 

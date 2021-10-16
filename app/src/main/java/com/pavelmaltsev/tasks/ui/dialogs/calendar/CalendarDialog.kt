@@ -1,4 +1,4 @@
-package com.pavelmaltsev.tasks.ui.dialog.calendar
+package com.pavelmaltsev.tasks.ui.dialogs.calendar
 
 import android.app.AlertDialog
 import android.app.Dialog
@@ -44,6 +44,11 @@ class CalendarDialog(private val onDateSelected: OnDateSelected) : AppCompatDial
             onDateSelected.selectedDate(calendar)
             dismiss()
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }
 

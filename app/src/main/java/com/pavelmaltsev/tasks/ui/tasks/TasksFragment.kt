@@ -24,6 +24,7 @@ import com.pavelmaltsev.tasks.data.enum.DisplayMode
 import com.pavelmaltsev.tasks.data.room.MainDatabase
 import com.pavelmaltsev.tasks.databinding.FragmentTasksBinding
 import com.pavelmaltsev.tasks.module.Task
+import com.pavelmaltsev.tasks.ui.dialogs.explanation.ExplanationDialog
 import com.pavelmaltsev.tasks.ui.tasks.list.listeners.OnUpdateListener
 import com.pavelmaltsev.tasks.ui.tasks.list.TasksAdapter
 import com.pavelmaltsev.tasks.ui.tasks.list.listeners.OnCompleteListener
@@ -34,17 +35,19 @@ class TasksFragment :
     OnCompleteListener,
     NavigationView.OnNavigationItemSelectedListener {
 
+    private val tasksAdapter = TasksAdapter(this, this)
+    private val userEmailIndex = 0
     private var _binding: FragmentTasksBinding? = null
     private val binding get() = _binding!!
-    private val tasksAdapter = TasksAdapter(this, this)
+
+    private val viewModel by lazy {
+        ViewModelProvider(this).get(TaskViewModel::class.java)
+    }
     private val sharedPref by lazy {
         requireContext().getSharedPreferences(getString(R.string.shared_pref_name), 0)
     }
     private val editor by lazy { sharedPref.edit() }
-    private val viewModel by lazy {
-        ViewModelProvider(this).get(TaskViewModel::class.java)
-    }
-    private val userEmailIndex = 0
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,11 +64,35 @@ class TasksFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        checkExplanation()
         initRecyclerView()
         initBottomNavView()
         initDrawableLayout()
-        initListener()
+        initListeners()
         initObserver()
+    }
+
+    private fun checkExplanation() {
+        val isExplained = sharedPref.getBoolean(getString(R.string.is_explanation_showed), false)
+        if (!isExplained) {
+            val array = arrayListOf(
+                mapOf(
+                    "title" to getString(R.string.title_expl_1),
+                    "msg" to getString(R.string.msg_expl_1)
+                ),
+                mapOf(
+                    "title" to getString(R.string.title_expl_2),
+                    "msg" to getString(R.string.msg_expl_2)
+                )
+            )
+            for (item in array) {
+                val dialog = ExplanationDialog(item["title"]!!, item["msg"]!!)
+                activity?.let { activity ->
+                    dialog.show(activity.supportFragmentManager, "Explanation dialog")
+                }
+            }
+            editor.putBoolean(getString(R.string.is_explanation_showed), true).apply()
+        }
     }
 
     private fun initRecyclerView() {
@@ -95,8 +122,7 @@ class TasksFragment :
         tasksAdapter.setListMode(DisplayMode.MAP_MODE)
     }
 
-
-    private fun initListener() {
+    private fun initListeners() {
         binding.tasksFab.setOnClickListener {
             Navigation.findNavController(binding.root)
                 .navigate(R.id.action_tasksFragment_to_manageTaskFragment)
@@ -205,5 +231,4 @@ class TasksFragment :
         viewModel.updateTask(task)
     }
     //endregion
-
 }
